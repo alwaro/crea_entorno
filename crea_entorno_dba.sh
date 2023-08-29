@@ -15,16 +15,16 @@ export envFile=$cfgDir/entorno.cfg
 
 which screen > /dev/null 2>&1
 [[ $? -eq 0 ]] && {
-    export bloqueExtras="alias scl='screen -ls'\nalias sc='screen -DRS'"
+    export bloqueExtras1=$(echo -e "alias scl='screen -ls'\nalias sc='screen -DRS'")
 } || {
-    export bloqueExtras="#alias scl='screen -ls'\n#alias sc='screen -DRS'"
+    export bloqueExtras1=$(echo -e "#alias scl='screen -ls'\n#alias sc='screen -DRS'")
 }
 
 which rlwrap > /dev/null 2>&1
 [[ $? -eq 0 ]] && {
-    export bloqueExtras="${bloqueExtras}\nalias sqlplus='rlwrap sqlplus'\nalias rman='rlwrap rman'\n"
+    export bloqueExtras2=$(echo -e "alias sqlplus='rlwrap sqlplus'\nalias rman='rlwrap rman'")
 } || {
-    export bloqueExtras="${bloqueExtras}\n#alias sqlplus='rlwrap sqlplus'\n#alias rman='rlwrap rman'\n"
+    export bloqueExtras2=$(echo -e "#alias sqlplus='rlwrap sqlplus'\n#alias rman='rlwrap rman'")
 }
 
 
@@ -73,13 +73,13 @@ function entorno()
     echo "            LD_LIBRARY_PATH..: $LD_LIBRARY_PATH" 
     echo "            TNS_ADMIN........: $TNS_ADMIN" 
     echo "            ------------- PATH -------------" 
-    OIFS=$IFS 
+    OIFS=\$IFS 
     IFS=':' 
-    for ruta in $PATH 
+    for ruta in \$PATH 
     do 
-    echo "            $ruta" 
+    echo "            \$ruta" 
     done 
-    IFS=$OIFS 
+    IFS=\$OIFS 
     echo -e "\n\n" 
     echo "=========================================================================================" 
     echo
@@ -101,7 +101,8 @@ alias ll='ls -larth --color=auto'
 alias grep='grep --color=auto'
 alias duu='du -scBM *|sort -n'
 alias duuu='du -amx *|sort -nr|head -20'
-${bloqueExtras}
+${bloqueExtras1}
+${bloqueExtras2}
 alias sq='sqlplus / as sysdba'
 
 EOF
