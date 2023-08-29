@@ -2,6 +2,26 @@
 # ###################################################################
 #    SCRIPT DE CREACION DEL ENTORNO BASICO DE ORACLE PARA DBAs
 # ###################################################################
+# Script que  hace  una  configuracion  basica de entorno para  DBAs
+# Crea el siguiente fichero: 
+#     $HOME/configuracion/entorno.cfg
+#
+# Puede  bajarse y  ejecutarse  o puede hacerse todo en un paso con la 
+# siguiente orden desde una terminal, en el usuario que queramos configurar:
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/alwaro/crea_entorno/main/crea_entorno_dba.sh)" 
+#
+# Para hacer uso del fichero entorno.cfg, una vez lo tengamos podemos
+# Invocarlo manualmente
+#   . $HOME/configuracion/entorno.cfg
+# O Mucho mejor, incluirlo en el .bash_profile o el .bashrc agregandoles
+# al final del fichero, la siguiente linea:
+#   . $HOME/configuracion/entorno.cfg
+#
+# WHO          WHEN        WHAT
+# ------------ ----------- --------------------------------------------------
+# Alvaro Anaya 2023-08-29  Creacion del script.
+#
+# ######################################################################
 
 export cfgDir=$HOME/configuracion
 export envFile=$cfgDir/entorno.cfg
