@@ -16,14 +16,14 @@ export envFile=$cfgDir/entorno.cfg
 which screen > /dev/null 2>&1
 [[ $? -eq 0 ]] && {
     export bloqueExtras="alias scl='screen -ls'\nalias sc='screen -DRS'"
-} else {
+} || {
     export bloqueExtras="#alias scl='screen -ls'\n#alias sc='screen -DRS'"
 }
 
 which rlwrap > /dev/null 2>&1
 [[ $? -eq 0 ]] && {
     export bloqueExtras="${bloqueExtras}\nalias sqlplus='rlwrap sqlplus'\nalias rman='rlwrap rman'\n"
-} else {
+} || {
     export bloqueExtras="${bloqueExtras}\n#alias sqlplus='rlwrap sqlplus'\n#alias rman='rlwrap rman'\n"
 }
 
